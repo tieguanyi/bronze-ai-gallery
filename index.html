@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>文字3 | 青铜器AI活化</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 临时内嵌样式确保导航栏立即生效，实际以外部CSS为准 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e2a1a;
+            padding: 1rem 2rem;
+            color: #cfd8c5;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #5a7a4a;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #b9c6a5;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #cfd8c5;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            border-bottom-color: #c9a87b;
+            color: #ecd5a5;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">文字3</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="speed.html">文物速览</a></li>
+                <li><a href="move.html">文物动起来</a></li>
+                <li><a href="culture.html">文物文化叙事展</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text-overlay">
+                <h1>文字1</h1>
+                <p>文字2</p>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <h2 class="section-title">文物速览</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-img">🏺</div>
+                    <h3>后母戊鼎</h3>
+                    <p>商代晚期，重832.84千克，迄今出土最重青铜器。</p>
+                    <a href="speed.html" class="btn-more">了解更多</a>
+                </div>
+                <div class="card">
+                    <div class="card-img">📜</div>
+                    <h3>毛公鼎</h3>
+                    <p>西周，铭文近500字，记载完整诰命。</p>
+                    <a href="speed.html" class="btn-more">了解更多</a>
+                </div>
+                <div class="card">
+                    <div class="card-img">🐉</div>
+                    <h3>龙纹兕觥</h3>
+                    <p>商代酒器，龙形纹饰生动。</p>
+                    <a href="speed.html" class="btn-more">了解更多</a>
+                </div>
+                <!-- 你可以继续添加更多卡片 -->
+            </div>
+        </section>
+
+        <section class="section-block">
+            <h2 class="section-title">文物动起来</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-img">🎬</div>
+                    <h3>何尊 · 铭文浮现</h3>
+                    <p>AI让“中国”二字逐字亮起，纹饰流动。</p>
+                    <a href="move.html" class="btn-more">了解更多</a>
+                </div>
+                <div class="card">
+                    <div class="card-img">🔄</div>
+                    <h3>大盂鼎 · 兽面眨眼</h3>
+                    <p>饕餮双目开合，锈蚀纹理轻微波动。</p>
+                    <a href="move.html" class="btn-more">了解更多</a>
+                </div>
+                <div class="card">
+                    <div class="card-img">🌀</div>
+                    <h3>妇好偶方彝 · 鸮纹振翅</h3>
+                    <p>猫头鹰纹饰翅膀扇动，神秘感十足。</p>
+                    <a href="move.html" class="btn-more">了解更多</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-block">
+            <h2 class="section-title">文物文化叙事展</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-img">📖</div>
+                    <h3>青铜礼乐</h3>
+                    <p>编钟与鼎簋的组合，再现周代雅乐。</p>
+                    <a href="culture.html" class="btn-more">了解更多</a>
+                </div>
+                <div class="card">
+                    <div class="card-img">⚔️</div>
+                    <h3>征伐与盟誓</h3>
+                    <p>青铜戟、钺上的铭文，记录战争与和盟。</p>
+                    <a href="culture.html" class="btn-more">了解更多</a>
+                </div>
+                <div class="card">
+                    <div class="card-img">🌾</div>
+                    <h3>祭祀与神兽</h3>
+                    <p>青铜神兽与祭祀场景的数字化再现。</p>
+                    <a href="culture.html" class="btn-more">了解更多</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 文字3 项目组 | AI生成内容仅作展示 | 文物原型藏于各大博物馆</p>
+    </footer>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">信息加载中...</div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 汉堡菜单功能
+        document.querySelector('.hamburger')?.addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

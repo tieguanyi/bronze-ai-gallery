@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文物动起来 · 文字3</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">文物动起来</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="speed.html">文物速览</a></li>
+                <li><a href="move.html" class="active">文物动起来</a></li>
+                <li><a href="culture.html">文物文化叙事展</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">🎬 文物动起来 · AI动画展</h1>
+        <p class="subtitle">点击卡片，观看AI让青铜器“活”过来的效果</p>
+        <div class="cards-grid" id="move-grid"></div>
+    </main>
+
+    <footer>
+        <p>© 2025 文字3 项目组 | AI生成内容仅作展示 | 文物原型藏于各大博物馆</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        const moveArtifacts = [
+            { id: 1, name: "后母戊鼎", desc: "AI让鼎身云雷纹缓慢流转，兽面双目眨动。" },
+            { id: 2, name: "毛公鼎", desc: "铭文逐字高亮，如墨迹书写，金文闪烁。" },
+            { id: 3, name: "何尊", desc: "“中国”二字逐字亮起，纹饰流动，铭文浮现。" },
+            { id: 4, name: "大盂鼎", desc: "饕餮双目开合，锈蚀纹理轻微波动。" },
+            { id: 5, name: "龙纹兕觥", desc: "龙形纹饰盘曲扭动，酒器仿佛有龙游走。" },
+            { id: 6, name: "妇好偶方彝", desc: "鸮纹翅膀扇动，神秘感十足。" },
+            { id: 7, name: "虢季子白盘", desc: "盘内水纹荡漾，铭文如涟漪散开。" },
+            { id: 8, name: "曾侯乙编钟", desc: "钟体振动波纹扩散，音律可视化。" },
+            { id: 9, name: "莲鹤方壶", desc: "壶顶仙鹤展翅欲飞，莲瓣摇曳。" },
+            { id: 10, name: "越王勾践剑", desc: "剑身纹路流动，寒光闪烁。" }
+        ];
+
+        const container = document.getElementById('move-grid');
+        moveArtifacts.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card clickable-card';
+            card.innerHTML = `
+                <div class="card-img-placeholder">🎥 ${item.name}</div>
+                <h3>${item.name}</h3>
+                <p>${item.desc}</p>
+            `;
+            card.addEventListener('click', () => {
+                window.location.href = `detail.html?from=move&id=${item.id}`;
+            });
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

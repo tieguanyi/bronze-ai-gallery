@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文物速览 · 文字3</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">文物速览</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="speed.html" class="active">文物速览</a></li>
+                <li><a href="move.html">文物动起来</a></li>
+                <li><a href="culture.html">文物文化叙事展</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="page-title">📖 文物速览 · 十件国宝</h1>
+        <p class="subtitle">点击任意卡片，查看文物详细介绍</p>
+        <div class="cards-grid" id="speed-grid">
+            <!-- 卡片由js动态生成，以便统一数据 -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 文字3 项目组 | AI生成内容仅作展示 | 文物原型藏于各大博物馆</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 文物数据（共10件）
+        const artifacts = [
+            { id: 1, name: "后母戊鼎", desc: "商代晚期，重832.84千克，迄今出土最重青铜器。" },
+            { id: 2, name: "毛公鼎", desc: "西周，铭文近500字，记载完整诰命。" },
+            { id: 3, name: "何尊", desc: "西周，底部铭文“中国”二字最早出现。" },
+            { id: 4, name: "大盂鼎", desc: "西周，记载周王册命盂的史实，书法瑰宝。" },
+            { id: 5, name: "龙纹兕觥", desc: "商代酒器，龙形纹饰生动，造型独特。" },
+            { id: 6, name: "妇好偶方彝", desc: "商代，鸮纹独特，出土于妇好墓。" },
+            { id: 7, name: "虢季子白盘", desc: "西周，记录战功的大型水器，铭文极长。" },
+            { id: 8, name: "曾侯乙编钟", desc: "战国，65件组合，音律完整，改写音乐史。" },
+            { id: 9, name: "莲鹤方壶", desc: "春秋，壶顶莲鹤展翅，精美绝伦。" },
+            { id: 10, name: "越王勾践剑", desc: "春秋，青铜剑，千年不锈，锋利依旧。" }
+        ];
+
+        const container = document.getElementById('speed-grid');
+        artifacts.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card clickable-card';
+            card.setAttribute('data-id', item.id);
+            card.setAttribute('data-from', 'speed');
+            card.innerHTML = `
+                <div class="card-img-placeholder">📷 ${item.name}</div>
+                <h3>${item.name}</h3>
+                <p>${item.desc}</p>
+            `;
+            card.addEventListener('click', () => {
+                window.location.href = `detail.html?from=speed&id=${item.id}`;
+            });
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>

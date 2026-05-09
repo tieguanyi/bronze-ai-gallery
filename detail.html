@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文物详情 · 文字3</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">文字3</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="speed.html">文物速览</a></li>
+                <li><a href="move.html">文物动起来</a></li>
+                <li><a href="culture.html">文物文化叙事展</a></li>
+            </ul>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <main class="detail-main">
+        <button class="back-btn" onclick="history.back()">← 返回</button>
+        <div id="detail-content">
+            <!-- 动态填充 -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 文字3 项目组 | AI生成内容仅作展示 | 文物原型藏于各大博物馆</p>
+    </footer>
+
+    <script>
+        // 获取URL参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const from = urlParams.get('from');   // speed, move, culture
+        const id = parseInt(urlParams.get('id'));
+
+        // 文物基础数据（名称统一）
+        const artifactNames = {
+            1: "后母戊鼎", 2: "毛公鼎", 3: "何尊", 4: "大盂鼎", 5: "龙纹兕觥",
+            6: "妇好偶方彝", 7: "虢季子白盘", 8: "曾侯乙编钟", 9: "莲鹤方壶", 10: "越王勾践剑"
+        };
+
+        // 不同来源的文字描述（占位，可自行修改）
+        const descriptions = {
+            speed: {
+                1: "后母戊鼎，商王祖庚或祖甲为祭祀母亲戊而铸。重832.84千克，是目前已知最重的青铜器。鼎身纹饰以云雷纹为地，兽面纹为主题，庄严雄浑。",
+                2: "毛公鼎，西周晚期，清道光年间出土。铭文32行，近500字，是现存铭文最长的青铜器。内容为周王册命毛公，委以重任，并告诫勤政爱民。",
+                3: "何尊，西周成王时期，1963年出土于陕西宝鸡。内底铭文12行122字，其中“宅兹中国”为“中国”一词最早的文字记载。",
+                4: "大盂鼎，西周康王时期，清道光年间出土。铭文19行291字，记载周王册命盂，并告诫商亡因酗酒，周兴因敬天。",
+                5: "龙纹兕觥，商代晚期酒器，造型奇特，前端为龙首，后端为兽面。通体饰龙纹、夔纹，是商代青铜艺术的杰作。",
+                6: "妇好偶方彝，商代晚期，1976年出土于河南安阳妇好墓。器身饰鸮纹（猫头鹰），盖为四阿式屋顶形，极为罕见。",
+                7: "虢季子白盘，西周宣王时期，清道光年间出土。盘内底铭文111字，记述虢国子白奉命征伐猃狁，战功卓著。",
+                8: "曾侯乙编钟，战国早期，1978年出土于湖北随州。65件编钟，总重2.5吨，音域跨五个半八度，一钟双音。",
+                9: "莲鹤方壶，春秋中期，1923年出土于河南新郑。壶顶莲瓣中央立一仙鹤，展翅欲飞，突破了商周青铜器的神秘风格。",
+                10: "越王勾践剑，春秋晚期，1965年出土于湖北江陵。剑身饰菱形暗纹，剑格嵌蓝色玻璃和绿松石，千年不锈。"
+            },
+            move: {
+                1: "AI动画：后母戊鼎的云雷纹缓慢旋转，兽面纹双目眨动，鼎身光泽随光线变化，仿佛从沉睡中苏醒。",
+                2: "AI动画：毛公鼎铭文逐字高亮，如墨迹书写，金文笔画的起承转合动态呈现，再现西周书法之美。",
+                3: "AI动画：何尊的“中国”二字逐字亮起，周围纹饰流动，底部铭文像有生命一般浮现。",
+                4: "AI动画：大盂鼎的饕餮双目开合，锈蚀纹理轻微波动，整器仿佛在呼吸。",
+                5: "AI动画：龙纹兕觥的龙形纹饰盘曲扭动，酒器表面的龙似乎要腾跃而出。",
+                6: "AI动画：妇好偶方彝的鸮纹翅膀扇动，猫头鹰的眼睛转动，神秘而灵动。",
+                7: "AI动画：虢季子白盘的盘内水纹荡漾，铭文如涟漪般散开，战功故事在水波中显现。",
+                8: "AI动画：曾侯乙编钟的钟体振动波纹扩散，一钟双音可视化，音律化作光点跃动。",
+                9: "AI动画：莲鹤方壶的壶顶仙鹤展翅欲飞，莲瓣摇曳，壶身蟠螭纹缠绕流动。",
+                10: "AI动画：越王勾践剑的剑身纹路流动，寒光闪烁，菱形暗格纹如流光穿梭。"
+            },
+            culture: {
+                1: "后母戊鼎：商王为祭祀母亲戊铸此鼎，鼎的体量象征王权之重，祭祀活动维系神权与政权。",
+                2: "毛公鼎：全文诰命是研究西周册命制度的第一手文献，反映了周王对重臣的信任与约束。",
+                3: "何尊：铭文中“宅兹中国”是“中国”最早出处，表达了周人建立天下中心的观念。",
+                4: "大盂鼎：周王以商亡因酗酒为戒，强调敬天、法祖、保民，是周代政治思想的浓缩。",
+                5: "龙纹兕觥：商代酒器与龙图腾结合，用于祭祀仪式，龙纹象征沟通天地神灵。",
+                6: "妇好偶方彝：妇好为商王武丁之妻，也是将军。其墓中青铜器展现了女性在商代的政治与军事地位。",
+                7: "虢季子白盘：铭文以韵文形式记载战功，具有史诗性质，是研究西周征伐北方民族的珍贵资料。",
+                8: "曾侯乙编钟：一钟双音，铭文记录乐理，体现了战国时期礼乐制度的完备和音乐理论的高度。",
+                9: "莲鹤方壶：春秋时期艺术风格从神秘走向写实，莲鹤方壶是这一变革的代表，展现自由与生机。",
+                10: "越王勾践剑：剑铭“越王鸠浅自作用剑”，见证勾践卧薪尝胆、灭吴复仇的历史。"
+            }
+        };
+
+        // 获取当前文物名称和描述
+        const artifactName = artifactNames[id];
+        let descriptionText = "";
+        if (descriptions[from] && descriptions[from][id]) {
+            descriptionText = descriptions[from][id];
+        } else {
+            descriptionText = "详细内容即将补充。";
+        }
+
+        // 构建详情页HTML
+        let mediaHtml = "";
+        if (from === 'speed') {
+            mediaHtml = `<div class="detail-media-placeholder">🖼️ ${artifactName} · 图片待补充</div>`;
+        } else if (from === 'move' || from === 'culture') {
+            mediaHtml = `<div class="detail-media-placeholder">🎬 ${artifactName} · 视频待补充<br>（AI动画效果即将上线）</div>`;
+        }
+
+        // 一键了解其他按钮
+        let otherButtonsHtml = `<div class="other-buttons"><h3>一键了解其他</h3><div class="btn-group">`;
+        const otherPages = ['speed', 'move', 'culture'].filter(f => f !== from);
+        otherPages.forEach(page => {
+            let pageName = "";
+            if (page === 'speed') pageName = "文物速览版本";
+            else if (page === 'move') pageName = "文物动起来版本";
+            else if (page === 'culture') pageName = "文物文化叙事展版本";
+            otherButtonsHtml += `<a href="detail.html?from=${page}&id=${id}" class="other-btn">🔍 ${pageName}</a>`;
+        });
+        otherButtonsHtml += `</div></div>`;
+
+        const fullHtml = `
+            <h1 class="detail-title">${artifactName}</h1>
+            ${mediaHtml}
+            <div class="detail-text">${descriptionText}</div>
+            ${otherButtonsHtml}
+        `;
+
+        document.getElementById('detail-content').innerHTML = fullHtml;
+    </script>
+</body>
+</html>
