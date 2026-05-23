@@ -6,7 +6,6 @@
     <title>文物详情 · 青铜青语</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* 视频容器样式 */
         .video-container {
             margin-bottom: 2rem;
         }
@@ -47,12 +46,10 @@
 
     <script>
         (function() {
-            // 获取URL参数
             const urlParams = new URLSearchParams(window.location.search);
-            const from = urlParams.get('from');   // speed, move, culture
+            const from = urlParams.get('from');
             const id = parseInt(urlParams.get('id'));
 
-            // 文物名称映射（注意与文件夹名称一致）
             const artifactNames = {
                 1: "八牛贮贝器", 2: "大克鼎", 3: "父乙觥", 4: "晋侯稣钟", 5: "龙纹扁足鼎",
                 6: "商鞅方升", 7: "吴王光剑", 8: "牺尊", 9: "镶嵌十字纹方钺", 10: "子仲姜盘"
@@ -63,14 +60,10 @@
                 return;
             }
 
-            // 基础路径
             const imgBasePath = `assets/images/${name}/`;
             const videoBasePath = `assets/videos/${name}/`;
-
-            // 当前语言状态 (仅用于 speed)
             let currentLang = 'zh';
 
-            // 获取图片路径（speed专用）
             function getImagePath(type, lang) {
                 if (type === 'idcard') {
                     return `${imgBasePath}${name}身份证${lang === 'zh' ? '中文版' : '英文版'}.png`;
@@ -80,14 +73,11 @@
                 return '';
             }
 
-            // 创建内容
             function renderContent() {
                 const container = document.getElementById('detail-content');
                 if (!container) return;
 
-                // 根据来源构建不同内容
                 if (from === 'speed') {
-                    // 文物速览：显示身份证+档案及翻译按钮
                     container.innerHTML = `
                         <h1 class="detail-title">${name}</h1>
                         <div class="detail-section">
@@ -102,11 +92,9 @@
                             <button id="translate-btn" class="btn-more-large">🌐 图片翻译 (English)</button>
                         </div>
                     `;
-
                     const idcardImg = document.getElementById('idcard-img');
                     const archiveImg = document.getElementById('archive-img');
                     const translateBtn = document.getElementById('translate-btn');
-
                     function updateImages() {
                         idcardImg.src = getImagePath('idcard', currentLang);
                         archiveImg.src = getImagePath('archive', currentLang);
@@ -114,17 +102,13 @@
                         archiveImg.onerror = () => { archiveImg.src = 'assets/images/placeholder.png'; };
                         translateBtn.textContent = currentLang === 'zh' ? '🌐 图片翻译 (English)' : '🌐 显示中文';
                     }
-
                     function toggleLanguage() {
                         currentLang = currentLang === 'zh' ? 'en' : 'zh';
                         updateImages();
                     }
-
                     translateBtn.addEventListener('click', toggleLanguage);
                     updateImages();
-
                 } else if (from === 'move') {
-                    // 文物动起来：数字人视频 + 文物动起来视频
                     const digitalHumanVideo = `${videoBasePath}${name}数字人视频.mp4`;
                     const animateVideo = `${videoBasePath}${name}文物动起来.mp4`;
                     container.innerHTML = `
@@ -145,7 +129,6 @@
                         </div>
                     `;
                 } else if (from === 'culture') {
-                    // 文物文化叙事展：文化展视频
                     const cultureVideo = `${videoBasePath}${name}文化展视频.mp4`;
                     container.innerHTML = `
                         <h1 class="detail-title">${name}</h1>
@@ -161,15 +144,15 @@
                     container.innerHTML = `<p>内容即将上线，敬请期待。</p>`;
                 }
 
-                // 添加“一键了解其他”按钮（所有情况都加）
+                // 添加“一键了解其他”按钮（文字去掉“版本”）
                 const otherPages = ['speed', 'move', 'culture'].filter(f => f !== from);
                 if (otherPages.length > 0) {
                     let otherButtonsHtml = `<div class="other-buttons"><h3>一键了解其他</h3><div class="btn-group">`;
                     otherPages.forEach(page => {
                         let pageName = "";
-                        if (page === 'speed') pageName = "文物速览版本";
-                        else if (page === 'move') pageName = "文物动起来版本";
-                        else if (page === 'culture') pageName = "文物文化叙事展版本";
+                        if (page === 'speed') pageName = "文物速览";
+                        else if (page === 'move') pageName = "文物动起来";
+                        else if (page === 'culture') pageName = "文物文化叙事展";
                         otherButtonsHtml += `<a href="detail.html?from=${page}&id=${id}" class="other-btn">🔍 ${pageName}</a>`;
                     });
                     otherButtonsHtml += `</div></div>`;
