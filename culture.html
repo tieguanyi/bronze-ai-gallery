@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文物文化叙事展 · 文字3</title>
+    <title>文物文化叙事展 · 青铜青语</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">文物文化叙事展</div>
+            <div class="logo">青铜青语·重绘风华</div>
             <ul class="nav-links">
                 <li><a href="index.html">首页</a></li>
                 <li><a href="speed.html">文物速览</a></li>
@@ -22,37 +22,37 @@
 
     <main>
         <h1 class="page-title">🏺 文物文化叙事展 · 历史故事</h1>
-        <p class="subtitle">点击卡片，了解青铜器背后的礼乐、战争与信仰</p>
+        <p class="subtitle">点击任意卡片，了解青铜器背后的礼乐、战争与信仰</p>
         <div class="cards-grid" id="culture-grid"></div>
     </main>
 
     <footer>
-        <p>© 2025 文字3 项目组 | AI生成内容仅作展示 | 文物原型藏于各大博物馆</p>
+        <p>© 2025 青铜青语·重绘风华项目组 | AI生成内容仅作展示 | 文物原型藏于各大博物馆</p>
     </footer>
 
     <script src="js/main.js"></script>
     <script>
-        const cultureArtifacts = [
-            { id: 1, name: "后母戊鼎", desc: "商王祭祀母亲戊的礼器，象征王权与神权。" },
-            { id: 2, name: "毛公鼎", desc: "周王册命毛公，全文诰命反映西周政治制度。" },
-            { id: 3, name: "何尊", desc: "最早“中国”铭文，展现周人天下观念。" },
-            { id: 4, name: "大盂鼎", desc: "周王告诫盂，商亡因酗酒，周兴因敬天。" },
-            { id: 5, name: "龙纹兕觥", desc: "酒器与龙图腾，商代祭祀仪式用具。" },
-            { id: 6, name: "妇好偶方彝", desc: "女将军妇好墓出土，见证商代女性权力。" },
-            { id: 7, name: "虢季子白盘", desc: "虢国将领子白战功，铭文为韵文体史诗。" },
-            { id: 8, name: "曾侯乙编钟", desc: "礼乐制度的巅峰，一钟双音，铭文乐理。" },
-            { id: 9, name: "莲鹤方壶", desc: "春秋时期的新艺术风格，挣脱商周神秘主义。" },
-            { id: 10, name: "越王勾践剑", desc: "越王卧薪尝胆，剑铭见证复仇历史。" }
+        // 文物数据（10件，主图路径按实际扩展名）
+        const artifacts = [
+            { id: 1, name: "八牛贮贝器", img: "assets/images/八牛贮贝器/八牛贮贝器主图.png" },
+            { id: 2, name: "大克鼎", img: "assets/images/大克鼎/大克鼎主图.jpg" },
+            { id: 3, name: "父乙觥", img: "assets/images/父乙觥/父乙觥主图.jpg" },
+            { id: 4, name: "晋侯稣钟", img: "assets/images/晋侯稣钟/晋侯稣钟主图.jpg" },
+            { id: 5, name: "龙纹扁足鼎", img: "assets/images/龙纹扁足鼎/龙纹扁足鼎主图.png" },
+            { id: 6, name: "商鞅方升", img: "assets/images/商鞅方升/商鞅方升主图.jpg" },
+            { id: 7, name: "吴王光剑", img: "assets/images/吴王光剑/吴王光剑主图.jpg" },
+            { id: 8, name: "牺尊", img: "assets/images/牺尊/牺尊主图.jpg" },
+            { id: 9, name: "镶嵌十字纹方钺", img: "assets/images/镶嵌十字纹方钺/镶嵌十字纹方钺主图.png" },
+            { id: 10, name: "子仲姜盘", img: "assets/images/子仲姜盘/子仲姜盘主图.jpg" }
         ];
 
         const container = document.getElementById('culture-grid');
-        cultureArtifacts.forEach(item => {
+        artifacts.forEach(item => {
             const card = document.createElement('div');
             card.className = 'card clickable-card';
             card.innerHTML = `
-                <div class="card-img-placeholder">📖 ${item.name}</div>
+                <img src="${item.img}" alt="${item.name}" class="card-img-real" onerror="this.src='assets/images/placeholder.png'">
                 <h3>${item.name}</h3>
-                <p>${item.desc}</p>
             `;
             card.addEventListener('click', () => {
                 window.location.href = `detail.html?from=culture&id=${item.id}`;
